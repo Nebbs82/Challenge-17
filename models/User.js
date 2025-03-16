@@ -27,8 +27,8 @@ const userSchema = new Schema({
     ]
 }, {timestamps: true});
  
-userSchemaV.virtual('friendCount').get(function() {
-    return this.frineds.length;
+userSchema.virtual('friendCount').get(function() {
+    return this.friends.length;
 });
 
 const User = mongoose.model('User', userSchema);
