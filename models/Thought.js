@@ -1,3 +1,26 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const reactionSchema = new Schema({
+  reactionId: {
+    type: Schema.Types.ObjectId,
+    default: () => new mongoose.Types.ObjectId()
+  },
+  reactionBody: {
+    type: String,
+    required: true,
+    maxlength: 280
+  },
+  username: {
+    type: String,
+    required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+});
+
 const thoughtSchema = new Schema({
     thoughtText: {
       type: String,
@@ -21,27 +44,7 @@ const thoughtSchema = new Schema({
     return this.reactions.length;
   });
 
-  const reactionSchema = new Schema({
-    reactionId: {
-      type: Schema.Types.ObjectId,
-      default: () => new mongoose.Types.ObjectId()
-    },
-    reactionBody: {
-      type: String,
-      required: true,
-      maxlength: 280
-    },
-    username: {
-      type: String,
-      required: true
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now
-    }
-  });
-
 
 
   const Thought = mongoose.model('Thought', thoughtSchema);
-module.exports = Thought;
+  module.exports = Thought;
